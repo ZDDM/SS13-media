@@ -89,7 +89,7 @@ class Main
                 $attr->length = "";
             }
 
-            $attr->url = Config::ROOT_URL . '/index.php?key=' . $this->calcAccessKey($md5) . '&get=' . $md5 . '&filetype=.m4a';
+            $attr->url = Config::ROOT_URL . '/index.php?key=' . $this->calcAccessKey($md5) . '&get=' . $md5 . '&filetype=.mp3';
 
             foreach ($fileInfo['playlists'] as $playlist) {
                 if (!isset($this->playlists[$playlist]['tracks'])) {
@@ -122,7 +122,7 @@ class Main
         $a = substr($md5, 0, 1);
         $b = substr($md5, 1, 1);
         $filename = substr($md5, 2);
-        return Config::getPoolDir() . "/{$a}/{$b}/{$filename}.m4a";
+        return Config::getPoolDir() . "/{$a}/{$b}/{$filename}.mp3";
     }
 
     private function error($msg)
@@ -137,9 +137,9 @@ class Main
             header('HTTP/1.1 404 Not Found');
             die('Nope');
         }
-        //header('Content-Description: File Transfer');
-        //header('Content-Type: audio/mpeg');
-        header('Content-Type: audio/mp4');
+        header('Content-Description: File Transfer');
+        header('Content-Type: audio/mpeg');
+        //header('Content-Type: audio/mp4');
         header('Content-Disposition: inline; filename=' . basename($filename));
         // attachment
         header('Expires: 0');
